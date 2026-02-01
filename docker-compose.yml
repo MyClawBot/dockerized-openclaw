@@ -1,0 +1,25 @@
+services:
+  openclaw:
+    build: .
+    container_name: openclaw-bot
+    environment:
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - OPENCLAW_GATEWAY_TOKEN=${GATEWAY_TOKEN}
+    ports:
+      - "${PORT:-18789}:18789"
+    volumes:
+      - openclaw_data:/root/.openclaw/data
+      - openclaw_workspace:/root/.openclaw/workspace
+      - openclaw_canvas:/root/.openclaw/canvas
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:18789/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  openclaw_data:
+  openclaw_workspace:
+  openclaw_canvas:
