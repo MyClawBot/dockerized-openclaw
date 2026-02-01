@@ -9,6 +9,7 @@ Ready-to-deploy OpenClaw Docker setup with preinstalled Linux-compatible skills.
 - Single-container deployment with Docker Compose
 - Persistent data via Docker volumes
 - Health check enabled
+- Memory limited to 1.5GB per container
 
 ## Preinstalled Skills
 
